@@ -1,5 +1,7 @@
 package org.dsa.arrays;
 
+import java.util.Arrays;
+
 /*
 
 You will be given two arrays A and B of positive integers.
