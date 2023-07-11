@@ -2,7 +2,7 @@ package org.dsa.strings;
 
 public class AddBinary {
 
-    public String addBinary(String a, String b) {
+    public static String addBinary(String a, String b) {
         StringBuilder sb = new StringBuilder();
         int i = a.length() - 1;
         int j = b.length() - 1;
@@ -30,5 +30,12 @@ public class AddBinary {
             sb.append(carry);
         }
         return sb.reverse().toString();
+    }
+
+    public static void main(String[] args) {
+        String a = "11";
+        String b = "1";
+
+        System.out.println("Sum of a=" + a + " & b="+b + " is == " + addBinary(a, b));
     }
 }

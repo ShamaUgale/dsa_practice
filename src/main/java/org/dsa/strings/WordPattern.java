@@ -1,30 +1,37 @@
 package org.dsa.strings;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public class WordPattern {
+class WordPattern {
+    public static boolean wordPattern(String pattern, String s) {
+        String[] array = s.split(" ");
+        if(array.length != pattern.length()) return false;
 
-    public boolean wordPattern(String pattern, String s) {
-        String[] words = s.split(" ");
+        Map<Character, String> c2s = new HashMap<Character, String>();
+        Map<String, Character> s2c = new HashMap<String, Character>();
 
-        if (words.length != pattern.length())
-            return false;
-
-        HashMap<Character, String> map = new HashMap();
-        for(int i=0; i< pattern.length(); i++){
-            char ch = pattern.charAt(i);
-            if(map.containsKey(ch)){
-                if(!map.get(ch).equals(words[i])){
-                    return false;
-                }
-            }else{
-                if(map.containsValue(words[i])){
-                    return false;
-                }
-                map.put(ch, words[i]);
+        for(int i=0; i<pattern.length(); i++){
+            char c = pattern.charAt(i);
+            String str = array[i];
+            if(!c2s.containsKey(c)){
+                c2s.put(c,str);
+            }
+            if(!s2c.containsKey(str)){
+                s2c.put(str,c);
+            }
+            if(!c2s.get(c).equals(str) || !s2c.get(str).equals(c)){
+                return false;
             }
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(wordPattern("abca", "queen king lion queen"));
+        System.out.println(wordPattern("abba", "queen king king queen"));
+        System.out.println(wordPattern("abba", "queen king lion queen"));
+
 
     }
 }
